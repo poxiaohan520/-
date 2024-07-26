@@ -1,0 +1,11 @@
+local Collision = game.Players.LocalPlayer.Character:WaitForChild'Collision'
+local Crouch = Collision.CollisionCrouch
+Crouch.Massless = true
+
+local OTick = tick()
+game:GetService('RunService'):BindToRenderStep('Bypass', 999, function()
+    if (tick() - OTick) >= .2 then
+        Collision.Massless = not Collision.Massless
+        OTick = tick()
+    end
+end)
